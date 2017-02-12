@@ -17,20 +17,33 @@
 <body>
 
 
-	<div>Search By:</div>
+	<div>Search:</div>
 	<div>
-		Note
-		<br>
-		<input type="text" id="searchnote" />
-	</div>
-	<div>
-		Tax
-		<br>
-		<input type="number" id="searchtax" />
-		<button onclick="filterGrid()" id="submitButton">Search</button>
-	</div>
+		<select id="option1">
+			<option>amount</option>
+			<option>tax</option>
+			<option>total</option>
+			<option>notes</option>
+		</select>
+		<input type="text" id="searchfield1" />
+		<select id="boolean">
+			<option>AND</option>
+			<option>OR</option>
+		</select>
 
-	<br/>
+		<select id="option2">
+			<option>tax</option>
+			<option>total</option>
+			<option>notes</option>
+			<option>amount</option>
+		</select>
+		<input type="text" id="searchfield2" />
+
+		<br>
+		<button onclick="filterGrid()">Search</button>
+	</div>
+	<br>
+	<br>
 
 
   <table id="grid"></table>
