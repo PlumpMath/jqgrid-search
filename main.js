@@ -1,22 +1,30 @@
 jQuery(document).ready(function(){
-	jQuery("#grid").jqGrid({
+	$("#grid").jqGrid({
 		datatype: 'clientSide',
 		colNames:['Inv No','Date', 'Amount','Tax','Total','Notes'],
 		colModel :[
-			{name:'id',index:'invid', width:55, sorttype:'int'},
+			{name:'id',index:'invid', width:55, sorttype:'int', searchoptions:{sopt:['eq','ne','le','lt','gt','ge']}},
 			{name:'invdate',index:'invdate', width:90, sorttype:'date', datefmt:'Y-m-d'},
-			{name:'amount',index:'amount', width:80, align:'right',sorttype:'float'},
-			{name:'tax',index:'tax', width:80, align:'right',sorttype:'float'},
-			{name:'total',index:'total', width:80,align:'right',sorttype:'float'},
+			{name:'amount',index:'amount', width:80, align:'right',sorttype:'float', searchoptions:{sopt:['eq','ne','le','lt','gt','ge']}},
+			{name:'tax',index:'tax', width:80, align:'right',sorttype:'float', searchoptions:{sopt:['eq','ne','le','lt','gt','ge']}},
+			{name:'total',index:'total', width:80,align:'right',sorttype:'float', searchoptions:{sopt:['eq','ne','le','lt','gt','ge']}},
 			{name:'note',index:'note', width:150, sortable:false}
 		],
 		data: mydata,
 		width: 700,
     viewrecords: true,
+    rownumbers: true,
+		rownumWidth: 40,
+		gridview: true,
+   	// pager: '#pager',
+   	sortname: 'item_id',
+    viewrecords: true,
+    sortorder: "asc",
 		caption: "Show query in search"
 	});
 });
 
+// jQuery("#grid").jqGrid('filterToolbar',{searchOperators : true});
 
 var mydata = [
 	{id:"1",invdate:"2007-10-01",name:"test",note:"note",amount:"200.00",tax:"12.00",total:"210.00"},
@@ -53,7 +61,6 @@ function filterGrid(){
 	} else {
 		var result = mydata
 	}
-
 
 	jQuery("#grid").jqGrid('setGridParam', {url: '/newurl1', data: result, page: 1}).trigger("reloadGrid");
 
